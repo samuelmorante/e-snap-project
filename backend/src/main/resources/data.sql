@@ -1,0 +1,3 @@
+INSERT INTO noticia (titulo, cuerpo, categoria, fecha, imagen_url) VALUES ('T1 Gana el Mundial', 'Faker levanta su quinta copa...', 'eSports', CURRENT_DATE, 'https://placehold.co/600x400');
+INSERT INTO noticia (titulo, cuerpo, categoria, fecha, imagen_url) VALUES ('Nuevo Agente en Valorant', 'Riot presenta las habilidades...', 'PC', CURRENT_DATE, 'https://placehold.co/600x400');
+INSERT INTO noticia (titulo, cuerpo, categoria, fecha, imagen_url) VALUES ('Steam Deck 2 Rumores', 'Valve podría estar trabajando en...', 'Hardware', CURRENT_DATE, 'https://placehold.co/600x400');

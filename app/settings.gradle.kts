@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MyNoteApp"
+rootProject.name = "eSnapApp"
 include(":app")
  

@@ -1,0 +1,32 @@
+services:
+  news-backend:
+    build: .
+    container_name: tfg-news-app
+    ports:
+      - "8080:8080"
+    environment:
+      # --- Configuración H2 en MEMORIA ---
+      # "mem:testdb" significa que vive en la RAM. Al apagar, desaparece.
+      # Al arrancar, se carga siempre limpio desde el data.sql
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=
+
+      # --- CLAVE PARA QUE FUNCIONE EL DATA.SQL ---
+      # Esto obliga a Spring a crear las tablas (JPA) ANTES de ejecutar el data.sql
+      # Si no pones esto, a veces falla diciendo "Table not found" al insertar datos
+      - SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION=true
+      - SPRING_SQL_INIT_MODE=always
+
+      # --- Configuración JPA ---
+      # "update" o "create-drop" está bien para memoria
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+      # --- Firebase (Opcional, si validas tokens en el backend) ---
+      # Si necesitas el archivo .json de firebase, mira la nota abajo
+      # - GOOGLE_APPLICATION_CREDENTIALS=/app/firebase-config.json
+
+    # (Opcional) Si usas Firebase Admin SDK y necesitas el JSON de credenciales:
+    # volumes:
+    #   - ./src/main/resources/firebase-service-account.json:/app/firebase-config.json
